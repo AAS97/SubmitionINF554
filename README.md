@@ -6,3 +6,6 @@ Python scripts to run in order :
 2. Build_dict.py : Input : './node_info_snl.json', Output : Dictionary at './reduced_dict.dict'
 3. Build_bow.py : Input : './node_info_snl.json' and './reduced_dict.dict', Output : './BOW_pca.json'
 4. nn_bow.py : Input :'./BOW_pca.json', Output : './predictionBOW.csv'
+
+## Node2Vec encoding
+1. Node2Vec.ipynb
