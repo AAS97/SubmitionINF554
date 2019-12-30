@@ -47,12 +47,11 @@ X_validation = scaler.transform(X_validation)
 prediction = list(mlp.predict(X_validation))        
 
 #store it in a csv file
-data = zip(range(0,len(prediction)), prediction)
 # Write the output in the format required by Kaggle
 with open("./predictionBOW.csv","w",newline = '') as sample:
     csv_out = csv.writer(sample)
     csv_out.writerow(['id','predicted'])
-    for row in data:
+    for row in zip(range(0,len(prediction)), prediction):
         csv_out.writerow(row) 
 
 print("Prediction wrote to file", flush=True )
