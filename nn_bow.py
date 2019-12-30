@@ -27,7 +27,7 @@ with open('./data/training.txt', 'r') as file:
 
 mlp = MLPClassifier(verbose=True)
 
-mlp.fit(X_train,y_train)
+mlp.fit(X,y)
 
 #pickle.dump(mlp, open('./ISAE_Comp/out/mlp_model.sav', 'wb'))
 #print("Finished fitting, model saved to file", flush=True)
