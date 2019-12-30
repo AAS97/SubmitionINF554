@@ -2,6 +2,7 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix
+from sklearn.preprocessing import StandardScaler
 import json
 import pickle
 
@@ -24,6 +25,9 @@ with open('./data/training.txt', 'r') as file:
 #X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
 #print("Training set legnth : {0}   Testing set length : {1}".format(len(X_train), len(X_test)), flush=True)
 
+scaler = StandardScaler()
+scaler.fit(X)
+X = scaler.transform(X)
 
 mlp = MLPClassifier(verbose=True)
 
@@ -48,6 +52,7 @@ with open('./data/testing.txt', 'r') as file:
         if int(line[0]) < max_node and int(line[1]) < max_node:
             X_validation.append( bow[int(line[0])].extend(bow[int(line[1])]) )
 
+X_validation = scaler.transform(X_validation)
 prediction = list(mlp.predict(X_validation))        
 
 #store it in a csv file
