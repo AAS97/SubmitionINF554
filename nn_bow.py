@@ -34,23 +34,14 @@ mlp = MLPClassifier(verbose=True)
 mlp.fit(X,y)
 
 #pickle.dump(mlp, open('./ISAE_Comp/out/mlp_model.sav', 'wb'))
-#print("Finished fitting, model saved to file", flush=True)
-
-
-
-
-
-print("Getting {0} % accuracy".format(accuracy_score(y_test, prediction, normalize=False)/len(X_test)), flush=True)
-print("Confusion Matrix", flush=True)
-print(confusion_matrix(y_test, prediction)/len(X_test), flush=True)
+print("Finished fitting, model saved to file", flush=True)
 
 #load test sample
 X_validation = []
 with open('./data/testing.txt', 'r') as file:
     for line in file:
         line = line.split()
-        if int(line[0]) < max_node and int(line[1]) < max_node:
-            X_validation.append( bow[int(line[0])].extend(bow[int(line[1])]) )
+        X_validation.append( bow[int(line[0])].extend(bow[int(line[1])]) )
 
 X_validation = scaler.transform(X_validation)
 prediction = list(mlp.predict(X_validation))        
